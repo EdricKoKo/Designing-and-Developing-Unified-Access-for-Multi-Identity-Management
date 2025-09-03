@@ -1,0 +1,64 @@
+version: '3.8'
+services:
+  api:
+    build: ./api
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=example
+      - DB_NAME=tmsdb
+    working_dir: /app
+    depends_on:
+      - mysql
+    networks:
+      - tms_net
+  spa:
+      build: ./spa
+      restart: unless-stopped
+      environment:
+        - NODE_ENV=production
+      working_dir: /app
+      depends_on:
+        - api
+      ports:
+        - "4000:4000"
+      networks:
+        - tms_net
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - spa
+      - api
+    networks:
+      - tms_net
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: tmsdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - tms_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
+networks:
+  tms_net:
+    driver: bridge
