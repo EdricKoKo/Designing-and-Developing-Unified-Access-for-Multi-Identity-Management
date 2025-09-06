@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "owner": "a6100a1c-7ce6-43a9-8e5e-ffc7901fcedd",
+      "id": "j_2RRjrPN9cXmK-Q8QlYP",
+      "name": "Setup Microsoft Entra Identity Provider  ",
+      "completed": false
+    },
+    {
+      "owner": "a6100a1c-7ce6-43a9-8e5e-ffc7901fcedd",
+      "id": "-tP3ddcxCGT9UNkSh-yF_",
+      "name": "Create Frontend React App secured by Microsoft Entra ",
+      "completed": false
+    },
+    {
+      "owner": "a6100a1c-7ce6-43a9-8e5e-ffc7901fcedd",
+      "id": "7Qajex7rLpYLNgt2rohQZ",
+      "name": "Create Backend API secured by MS IDP",
+      "completed": false
+    },
+    {
+      "owner": "a6100a1c-7ce6-43a9-8e5e-ffc7901fcedd",
+      "id": "KKG6T-v2vMp-Q-phug9h4",
+      "name": "Setup Auth0 Identity Provider",
+      "completed": false
+    }
+  ]
+}
